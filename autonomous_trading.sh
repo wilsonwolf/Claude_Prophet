@@ -27,10 +27,10 @@ else
         export $(cat .env | grep -v '^#' | xargs)
     fi
 
-    # Start the trading bot in background
+    # Start the trading bot in background (use binary for speed)
     ALPACA_API_KEY=${ALPACA_API_KEY:-$ALPACA_PUBLIC_KEY} \
     ALPACA_SECRET_KEY=${ALPACA_SECRET_KEY} \
-    nohup go run ./cmd/bot/main.go > trading_bot.log 2>&1 &
+    nohup ./prophet_bot > trading_bot.log 2>&1 &
 
     echo $! > trading_bot.pid
 
